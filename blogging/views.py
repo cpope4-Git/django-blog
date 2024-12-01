@@ -2,32 +2,30 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 from blogging.models import Post
 from django.http import Http404
+from django.views.generic import ListView, DetailView, TemplateView
+
+class BlogTemplateView(TemplateView):
+
+    template_name = 'stub.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['args'] = self.args
+        context['kwargs'] = self.kwargs
+        return context
 
 
-def stub_view(request, *args, **kwargs):
-    body = "Stub View\n\n"
-    if args:
-        body += "Args:\n"
-        body += "\n".join(["\t%s" % a for a in args])
-    if kwargs:
-        body += "Keyword args:\n"
-        body += "\n".join(["\t%s: %s" % i for i in kwargs.items()])
-    return HttpResponse(body, content_type="text/plain")
+class BlogListView(ListView):
 
-def list_view(request):
-    #published = Post.objects.exclude(published_date__exact=None)
-    published = Post.objects
-    posts = published.order_by('-published_date')
-    #print(f'number of posts {len(posts)}')
-    context = {'posts': posts}
-    return render(request, 'blogging/list.html', context)
+    model = Post
+    queryset = Post.objects.order_by('-published_date')
+    template_name = 'blogging/list.html'
+    context_object_name = 'posts'
 
-def detail_view(request, post_id):
-    #published = Post.objects.exclude(published_date__exact=None)
-    published = Post.objects
-    try:
-        post = published.get(pk=post_id)
-    except Post.DoesNotExist:
-        raise Http404
-    context = {'post': post}
-    return render(request, 'blogging/detail.html', context)
+
+
+class BlogDetailView(DetailView):
+
+    model = Post
+    template_name = 'blogging/detail.html'
+    pk_url_kwarg = 'post_id'

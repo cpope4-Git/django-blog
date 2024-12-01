@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <title>Stub View</title>
+</head>
+<body>
+    <h1>Stub View</h1>
+
+    {% if args %}
+        <h2>Args:</h2>
+        <ul>
+            {% for arg in args %}
+                <li>{{ arg }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if kwargs %}
+        <h2>Keyword Args:</h2>
+        <ul>
+            {% for key, value in kwargs.items %}
+                <li>{{ key }}: {{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
