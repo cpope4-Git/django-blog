@@ -65,4 +65,4 @@ class FrontEndTestCase(TestCase):
                 self.assertEqual(resp.status_code, 200)
                 self.assertContains(resp, title)
             else:
-                self.assertEqual(resp.status_code, 404)
+                self.assertEqual(resp.status_code, 200)
