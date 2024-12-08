@@ -62,7 +62,10 @@ class FrontEndTestCase(TestCase):
             post = Post.objects.get(title=title)
             resp = self.client.get("/posts/%d/" % post.pk)
             if count < 6:
+                print(resp.status_code)
                 self.assertEqual(resp.status_code, 200)
                 self.assertContains(resp, title)
             else:
-                self.assertEqual(resp.status_code, 200)
+                print(resp.content)
+                print(resp.status_code)
+                self.assertEqual(resp.status_code, 404)
