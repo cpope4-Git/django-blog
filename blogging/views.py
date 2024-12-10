@@ -21,22 +21,27 @@ class BlogTemplateView(TemplateView):
 
 class BlogListView(ListView):
     model = Post
-    published = model.objects.exclude(published_date__exact=None)
-    queryset = published.order_by("-published_date")
     template_name = "blogging/list.html"
     context_object_name = "posts"
+
+    def get_queryset(self):
+        queryset = Post.objects.all()
+        if self.request.user.is_authenticated:
+            return queryset
+        else:
+            return queryset[:2]
 
 
 class BlogDetailView(DetailView):
 
     model = Post
-    published = Post.objects.exclude(published_date__exact=None)
+    # published = Post.objects.exclude(published_date__exact=None)
     template_name = "blogging/detail.html"
     pk_url_kwarg = "post_id"
 
     def get_object(self):
         post_id = self.kwargs.get("post_id")
-        return get_object_or_404(self.published, pk=post_id)
+        return get_object_or_404(self.model, pk=post_id)
 
 
 class SignupView(CreateView):
