@@ -42,7 +42,7 @@ class BlogDetailView(DetailView):
 class SignupView(CreateView):
     model = get_user_model()
     form_class = UserCreationForm
-    template_name = "signup.html"
+    template_name = "blogging/signup.html"
 
     def get_success_url(self):
         return redirect("login")
