@@ -2,7 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from blogging.models import Post
 from django.http import Http404
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView, TemplateView, CreateView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
@@ -39,12 +39,10 @@ class BlogDetailView(DetailView):
         return get_object_or_404(self.published, pk=post_id)
 
 
-def signup(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("login")  # Redirect to login after successful signup
-    else:
-        form = UserCreationForm()
-    return render(request, "signup.html", {"form": form})
+class SignupView(CreateView):
+    model = get_user_model()
+    form_class = UserCreationForm
+    template_name = "blogging/signup.html"
+
+    def get_success_url(self):
+        return redirect("login")
