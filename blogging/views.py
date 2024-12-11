@@ -21,10 +21,15 @@ class BlogTemplateView(TemplateView):
 
 class BlogListView(ListView):
     model = Post
-    published = model.objects.exclude(published_date__exact=None)
-    queryset = published.order_by("-published_date")
     template_name = "blogging/list.html"
     context_object_name = "posts"
+
+    def get_queryset(self):
+        queryset = Post.objects.prefetch_related("categories").all()
+        if self.request.user.is_authenticated:
+            return queryset
+        else:
+            return queryset[:2]
 
 
 class BlogDetailView(DetailView):
