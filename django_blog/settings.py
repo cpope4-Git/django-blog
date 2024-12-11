@@ -63,6 +63,8 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+USE_TZ = False
+
 ACCOUNT_EMAIL_VERIFICATION = "none"  # Optional, skips email verification
 
 ROOT_URLCONF = "django_blog.urls"

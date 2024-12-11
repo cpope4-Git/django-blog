@@ -1,7 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 import datetime
-
+from django.utils import timezone
+from django.test.client import RequestFactory
 from blogging.models import Post, Category
 
 
@@ -35,11 +36,12 @@ class FrontEndTestCase(TestCase):
     ]
 
     def setUp(self):
-        self.now = datetime.datetime.now()
+        self.now = timezone.now()
         self.timedelta = datetime.timedelta(15)
         author = User.objects.get(pk=1)
         for count in range(1, 11):
             post = Post(title=f"Post {count} Title", text="foo", author=author)
+            print(post.title, post.text)
             if count < 6:
                 pubdate = self.now - self.timedelta * count
                 post.published_date = pubdate
@@ -50,6 +52,7 @@ class FrontEndTestCase(TestCase):
         resp_text = resp.content.decode(resp.charset)
         self.assertTrue("The Pope's Blog Posts" in resp_text)
         for count in range(1, 11):
+            print(resp_text[count])
             title = f"Post {count} Title"
             if count < 6:
                 self.assertContains(resp, title, count=1)
