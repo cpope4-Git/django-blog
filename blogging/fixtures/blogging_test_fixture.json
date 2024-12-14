@@ -39,34 +39,7 @@
     "model": "blogging.category",
     "pk": 1,
     "fields": {
-      "name": "Science Fiction",
-      "description": "This is a blog for science fiction movies"
-    }
-  },
-  {
-    "model": "blogging.category",
-    "pk": 2,
-    "fields":
-    {
-      "name": "Drama",
-      "description": "Drama movie category"
-    }
-  },
-  {
-    "model": "blogging.category",
-    "pk": 3,
-    "fields":
-    {
       "name": "New Tech",
-      "description": ""
-    }
-  },
-  {
-    "model": "blogging.category",
-    "pk": 4,
-    "fields":
-    {
-      "name": "New Toys",
       "description": ""
     }
   },
@@ -75,13 +48,12 @@
     "pk": 1,
     "fields":
     {
-      "title": "Why Google Workspace Rocks!",
+      "title": "Post 1 Title",
       "text": "Google Workspace is a comprehensive suite of cloud-based productivity tools that has revolutionized the way teams collaborate and work. Here's why it rocks: á \r\n* Seamless Collaboration\r\n* Powerful Tools\r\n* Robust Security\r\n* And Much More!",
       "author": 1,
       "created_date": "2024-11-13T05:42:29.260Z",
       "modified_date": "2024-12-10T08:25:10.436Z",
-      "published_date": "2024-12-10T08:25:08Z",
-      "categories": [3]
+      "published_date": "2024-12-10T08:25:08Z"
     }
   },
   {
@@ -92,38 +64,9 @@
       "title": "Building a Scalable Web Application with Python and Django",
       "text": "Django, a powerful Python web framework, is an excellent choice for building scalable web applications. Its robust features, clear architecture, and extensive community support make it a popular choice for developers.",
       "author": 1,
-      "created_date": "2024-11-16T23:25:49.606Z",
-      "modified_date": "2024-12-10T08:25:03.960Z",
-      "published_date": "2024-12-06T08:25:01Z",
-      "categories": [3]
-    }
-  },
-  {
-    "model": "blogging.post",
-    "pk": 3,
-    "fields":
-    {
-      "title": "Lamborghini's Seafaring Adventure",
-      "text": "Lamborghini isn't just about land-based speed and luxury; they've ventured into the world of water with the stunning Tecnomar for Lamborghini 63. This high-performance yacht is a testament to Lamborghini's commitment to pushing the boundaries of design and engineering.",
-      "author": 1,
-      "created_date": "2024-11-17T00:03:54.677Z",
-      "modified_date": "2024-12-10T08:24:53.315Z",
-      "published_date": "2024-12-04T08:24:51Z",
-      "categories": [3, 4]
-    }
-  },
-  {
-    "model": "blogging.post",
-    "pk": 4,
-    "fields":
-    {
-      "title": "Paramotoring: Soaring Through the Skies",
-      "text": "Paramotoring is a thrilling sport that combines the freedom of paragliding with the power of a small engine. It allows pilots to take off from virtually anywhere with minimal preparation, offering a unique perspective of the world from above.",
-      "author": 1,
-      "created_date": "2024-11-17T00:04:49.501Z",
-      "modified_date": "2024-12-10T08:24:45.648Z",
-      "published_date": "2024-12-02T08:24:36Z",
-      "categories": [1, 4]
+      "created_date": "2024-11-13T05:42:29.260Z",
+      "modified_date": "2024-12-10T08:25:10.436Z",
+      "published_date": "2024-12-10T08:25:08Z"
     }
   }
 ]
