@@ -46,27 +46,25 @@ class FrontEndTestCase(TestCase):
     def test_list_only_published(self):
         resp = self.client.get("/")
         resp_text = resp.content.decode(resp.charset)
-        self.assertTrue("The Pope's Blog Posts" in resp_text)
-        # for count in range(1, 6):
-        #     # print(resp_text[count])
-        #     title = f"Post {count} Title"
-        #     if count < 6:
-        #         self.assertContains(resp, title, count=1)
-        #     else:
-        #         self.assertNotContains(resp, title)
+        self.assertTrue("The Blog Posts" in resp_text)
+        for count in range(1, 6):
+            # print(resp_text[count])
+            title = f"Post {count} Title"
+            if count < 3:
+                self.assertContains(resp, title, count=1)
+            else:
+                self.assertNotContains(resp, title)
 
     def test_details_only_published(self):
-        for count in range(1, 4):
+        for count in range(1, 2):
             title = f"Post {count} Title"
-            post = Post.objects.get(pk=1)
-            resp = self.client.get("post/%d/" % count)
-            # print(count)
-            # print(f"Post ID 3: {post.title}, Published: {post.published_date}")
-            # if count < 3:
-            #     print(count)
-            #     # self.assertEqual(resp.status_code, 200)
-            #     self.assertContains(resp, title)
-            # else:
-            #     self.assertEqual(resp.status_code, 404)
-
-
+            post = Post.objects.get(pk=count)
+            resp = self.client.get("/posts/%d/" % post.pk)
+            print(resp.content, resp.status_code, resp.headers)
+            print(count)
+            print(f"Post ID 1: {post.title}, Published: {post.published_date}")
+            if count < 3:
+                self.assertEqual(resp.status_code, 200)
+                self.assertContains(resp, title)
+            else:
+                self.assertEqual(resp.status_code, 404)

@@ -36,7 +36,7 @@ class BlogDetailView(DetailView):
 
     model = Post
     template_name = "blogging/detail.html"
-    pk_url_kwarg = "post_id"
+    pk_url_kwarg = "posts"
 
 
 class SignupView(CreateView):

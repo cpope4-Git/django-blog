@@ -1,6 +1,6 @@
   {% extends "base.html" %}
     {% block content %}
-      <h1>The Pope's Blog Posts</h1>
+      <h1>The Blog Posts</h1>
       {% if user.is_authenticated %}
       <p>Welcome, {{ user.username }}!</p>
     {% else %}
@@ -14,7 +14,7 @@
           <a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a>
         </h2>
         <p class="byline">
-          Posted by {{ post.author.username }}
+          Posted by {{ post.author }} on {{ post.published_date }}
         </p>
         <div class="post-body">
           {{ post.text }}
