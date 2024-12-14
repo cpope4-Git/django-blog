@@ -63,8 +63,6 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-USE_TZ = False
-
 ACCOUNT_EMAIL_VERIFICATION = "none"  # Optional, skips email verification
 
 ROOT_URLCONF = "django_blog.urls"
@@ -128,7 +126,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
