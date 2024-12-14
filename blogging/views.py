@@ -32,16 +32,13 @@ class BlogListView(ListView):
             return queryset[:2]
 
 
-class BlogDetailView(DetailView):
-
+class PostDetailView(DetailView):
     model = Post
-    published = Post.objects.exclude(published_date__exact=None)
     template_name = "blogging/detail.html"
-    pk_url_kwarg = "post_id"
+    context_object_name = "post"
 
-    def get_object(self):
-        post_id = self.kwargs.get("post_id")
-        return get_object_or_404(self.published, pk=post_id)
+    def get_queryset(self):
+        return Post.objects.exclude(published_date__isnull=True)
 
 
 class SignupView(CreateView):

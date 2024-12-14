@@ -26,7 +26,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("polling/", include("polling.urls")),
-    path("blogging/", include("blogging.urls")),
     path(
         "login/",
         LoginView.as_view(template_name="login.html", next_page="/"),

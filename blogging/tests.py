@@ -59,11 +59,12 @@ class FrontEndTestCase(TestCase):
         for count in range(1, 4):
             title = f"Post {count} Title"
             post = Post.objects.get(pk=1)
-            resp = self.client.get("blogging/post/%d/" % count)
+            resp = self.client.get("post/%d/" % count)
             print(count)
-            if count < 4:
+            print(f"Post ID 3: {post.title}, Published: {post.published_date}")
+            if count < 3:
                 print(count)
-                self.assertEqual(resp.status_code, 404)
-                # self.assertContains(resp, title)
+                # self.assertEqual(resp.status_code, 200)
+                self.assertContains(resp, title)
             else:
-                self.assertEqual(resp.status_code, 200)
+                self.assertEqual(resp.status_code, 404)
