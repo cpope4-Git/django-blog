@@ -51,9 +51,9 @@
       "title": "Post 1 Title",
       "text": "Google Workspace is a comprehensive suite of cloud-based productivity tools that has revolutionized the way teams collaborate and work. Here's why it rocks: á \r\n* Seamless Collaboration\r\n* Powerful Tools\r\n* Robust Security\r\n* And Much More!",
       "author": 1,
-      "created_date": "2024-11-13T05:42:29.260Z",
-      "modified_date": "2024-12-10T08:25:10.436Z",
-      "published_date": "2024-12-10T08:25:08Z"
+      "created_date": "2024-12-14T05:16:52.403Z",
+      "modified_date": "2024-12-14T21:47:30.560Z",
+      "published_date": "2024-12-14T06:00:00Z"
     }
   },
   {
@@ -61,12 +61,12 @@
     "pk": 2,
     "fields":
     {
-      "title": "Building a Scalable Web Application with Python and Django",
+      "title": "Post 2 Title",
       "text": "Django, a powerful Python web framework, is an excellent choice for building scalable web applications. Its robust features, clear architecture, and extensive community support make it a popular choice for developers.",
       "author": 1,
-      "created_date": "2024-11-13T05:42:29.260Z",
-      "modified_date": "2024-12-10T08:25:10.436Z",
-      "published_date": "2024-12-10T08:25:08Z"
+      "created_date": "2024-12-14T05:17:33.766Z",
+      "modified_date": "2024-12-14T21:47:16.095Z",
+      "published_date": "2024-12-14T06:00:00Z"
     }
   }
 ]
