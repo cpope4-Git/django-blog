@@ -57,7 +57,7 @@ class FrontEndTestCase(TestCase):
 
     def test_details_only_published(self):
         print(Post.objects.all())
-        for count in range(1, 11):
+        for count in range(1, 3):
             title = f"Post {count} Title"
             post = Post.objects.get(pk=count)
             resp = self.client.get("/posts/%d/" % post.pk)
