@@ -69,7 +69,7 @@ class BlogDetailView(DetailView):
 
     model = Post
     template_name = "blogging/detail.html"
-    pk_url_kwarg = "posts"
+    pk_url_kwarg = "post_id"
 
 
 class SignupView(CreateView):
