@@ -48,7 +48,7 @@ class FrontEndTestCase(TestCase):
         resp_text = resp.content.decode(resp.charset)
         self.assertTrue("The Blog Posts" in resp_text)
         for count in range(1, 6):
-            # print(resp_text[count])
+            print(resp_text)
             title = f"Post {count} Title"
             if count < 3:
                 self.assertContains(resp, title, count=1)

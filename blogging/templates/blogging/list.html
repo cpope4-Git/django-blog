@@ -1,29 +1,26 @@
-  {% extends "base.html" %}
-    {% block content %}
+  {% extends "base.html" %}{% block content %}
       <h1>The Blog Posts</h1>
       {% if user.is_authenticated %}
-      <p>Welcome, {{ user.username }}!</p>
-    {% else %}
-      <p>Sign up or log in to see more posts.</p>
-      <a href="{% url 'signup' %}">Sign Up</a>
-      <a href="{% url 'login' %}">Log In</a>
-    {% endif %}
-    {% for post in posts %}
-      <div class="post">
-        <h2>
-          <a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a>
-        </h2>
-        <p class="byline">
-          Posted by {{ post.author }} on {{ post.published_date }}
-        </p>
-        <div class="post-body">
-          {{ post.text }}
+        <p>Welcome, {{ user.username }}!</p>
+      {% else %}
+        <p>Sign up or log in to see more posts.</p>
+        <a href="{% url 'signup' %}">Sign Up</a>
+        <a href="{% url 'login' %}">Log In</a>
+      {% endif %}
+      {% comment %} Here is where the query happens {% endcomment %}
+      {% for post in posts %}
+        <div class="post">
+            <h2>
+                <a href="{% url 'blog_detail' post.pk %}">{{ post }}</a>
+            </h2>
+            <p class="byline">
+              Posted by {{ post.author.username }} &mdash; {{ post.published_date }}
+            </p>
+            <ul class="categories">
+              {% for category in post.categories.all %}
+                <li>{{ category }}</li>
+              {% endfor %}
+            </ul>
         </div>
-        <ul class="categories">
-          {% for category in post.categories.all %}
-          <li>{{ category }}</li>
-          {% endfor %}
-        </ul>
-      </div>
     {% endfor %}
   {% endblock %}
