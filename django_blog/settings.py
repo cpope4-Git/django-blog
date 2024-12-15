@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = "django-insecure-cs!8-v1hkyaz6sal_rg23q5lzx-ysd2)q*=7smhs1y)5%xiu1c"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,15 +54,14 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
-
 SITE_ID = 1
 
 ACCOUNT_EMAIL_VERIFICATION = "none"  # Optional, skips email verification
