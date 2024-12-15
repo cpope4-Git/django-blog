@@ -36,9 +36,9 @@ class FrontEndTestCase(TestCase):
         self.now = datetime.datetime.now()
         self.timedelta = datetime.timedelta(15)
         author = User.objects.get(pk=1)
-        for count in range(3, 11):
+        for count in range(1, 11):
             post = Post(title=f"Post {count} Title", text="foo", author=author)
-            if count < 3:
+            if count < 6:
                 pubdate = self.now - self.timedelta * count
                 post.published_date = pubdate
             post.save()
@@ -47,24 +47,19 @@ class FrontEndTestCase(TestCase):
         resp = self.client.get("/")
         resp_text = resp.content.decode(resp.charset)
         self.assertTrue("The Blog Posts" in resp_text)
-        for count in range(1, 6):
-            print(resp_text)
+        for count in range(1, 11):
             title = f"Post {count} Title"
-            if count < 3:
+            if count < 6:
                 self.assertContains(resp, title, count=1)
             else:
                 self.assertNotContains(resp, title)
 
     def test_details_only_published(self):
-        print(Post.objects.all())
-        for count in range(1, 3):
+        for count in range(1, 11):
             title = f"Post {count} Title"
             post = Post.objects.get(pk=count)
             resp = self.client.get("/posts/%d/" % post.pk)
-            print(resp.content, resp.status_code, resp.headers)
-            print(count)
-            print(f"Post ID 1: {post.title}, Published: {post.published_date}")
-            if count < 3:
+            if count < 6:
                 self.assertEqual(resp.status_code, 200)
                 self.assertContains(resp, title)
             else:

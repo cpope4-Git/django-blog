@@ -58,18 +58,19 @@ class BlogListView(ListView):
     context_object_name = "posts"
 
     def get_queryset(self):
-        queryset = Post.objects.prefetch_related("categories").all()
-        if self.request.user.is_authenticated:
-            return queryset
-        else:
-            return queryset[:2]
+        published = Post.objects.exclude(published_date__exact=None)
+        return published
 
 
 class BlogDetailView(DetailView):
 
     model = Post
     template_name = "blogging/detail.html"
-    pk_url_kwarg = "post_id"
+    context_object_name = "post"
+
+    def get_queryset(self):
+        published = Post.objects.exclude(published_date__exact=None)
+        return published
 
 
 class SignupView(CreateView):
