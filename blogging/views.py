@@ -6,6 +6,39 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from rest_framework import permissions, viewsets
+from blogging.serializers import PostSerializer, UserSerializer, CategorySerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+
+    queryset = User.objects.all().order_by("-date_joined")
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows posts to be viewed.
+    """
+
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows categories to be viewed.
+    """
+
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class BlogTemplateView(TemplateView):
