@@ -16,7 +16,6 @@ TEMPLATE_DEBUG = False
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 ALLOWED_HOSTS = ["*"]
-print(SECRET_KEY)
 
 MIDDLEWARE = (
     "whitenoise.middleware.WhiteNoiseMiddleware",
