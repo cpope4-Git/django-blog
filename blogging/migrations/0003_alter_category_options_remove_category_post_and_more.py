@@ -6,21 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blogging', '0002_category'),
+        ("blogging", "0002_category"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='category',
-            options={'verbose_name_plural': 'Categories'},
+            name="category",
+            options={"verbose_name_plural": "Categories"},
         ),
         migrations.RemoveField(
-            model_name='category',
-            name='post',
+            model_name="category",
+            name="post",
         ),
         migrations.AddField(
-            model_name='post',
-            name='categories',
-            field=models.ManyToManyField(blank=True, related_name='Posts', to='blogging.category'),
+            model_name="post",
+            name="categories",
+            field=models.ManyToManyField(
+                blank=True, related_name="Posts", to="blogging.category"
+            ),
         ),
     ]
