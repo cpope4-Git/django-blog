@@ -36,7 +36,7 @@ class FrontEndTestCase(TestCase):
         self.now = datetime.datetime.now()
         self.timedelta = datetime.timedelta(15)
         author = User.objects.get(pk=1)
-        for count in range(1, 11):
+        for count in range(3, 11):
             post = Post(title=f"Post {count} Title", text="foo", author=author)
             if count < 3:
                 pubdate = self.now - self.timedelta * count
@@ -56,7 +56,8 @@ class FrontEndTestCase(TestCase):
                 self.assertNotContains(resp, title)
 
     def test_details_only_published(self):
-        for count in range(1, 2):
+        print(Post.objects.all())
+        for count in range(1, 11):
             title = f"Post {count} Title"
             post = Post.objects.get(pk=count)
             resp = self.client.get("/posts/%d/" % post.pk)
